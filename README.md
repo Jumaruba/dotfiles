@@ -1,9 +1,14 @@
 # Dotfiles
 
-To install the dotfiles in your machine, you should execute the script as:
+## Requirements
 
-```bash
-chmod 770 install.fish
-fish ./install.fish
+### Stow
+```
+brew install stow
 ```
 
+## Executing 
+After installing `stow` you just need to type:
+```bash
+stow dotfiles/
+```

@@ -1,36 +1,23 @@
 #!/usr/bin/env fish
 
 # Usage: install.fish [module...]
-# Modules: nvim fish kitty doom ghostty packages
+# Modules: config
 # Default: installs all modules
 
-function install_config -a name src dest
-    echo "Installing $name: $src -> $dest"
-    cp -r $src $dest && sudo chown -R $USER $dest
-end
-
-function module_nvim
-    install_config nvim ./nvim/ $HOME/.config/nvim/
-end
-
 function module_fish
-    install_config fish ./fish/ $HOME/.config/fish/
-    curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
-    omf install lavender && omf theme lavender
-    fisher update
-end
-
-function module_kitty
-    install_config kitty ./kitty/ $HOME/.config/kitty/
+  echo "[Install] FISH"
+  curl https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install | fish
+  omf install lavender && omf theme lavender
+  fisher update
 end
 
 function module_doom
-    install_config doom ./doom/ $HOME/.config/doom/
-    git clone https://github.com/domtronn/all-the-icons.el
-    sudo cp all-the-icons.el/fonts/*.ttf $HOME/Library/Fonts/
-    rm -rf all-the-icons.el
+  git clone https://github.com/domtronn/all-the-icons.el
+  sudo cp all-the-icons.el/fonts/*.ttf $HOME/Library/Fonts/
+  rm -rf all-the-icons.el
 end
 
+<<<<<<< HEAD
 function module_ghostty
     install_config ghostty ./ghostty/ "$HOME/Library/Application Support/com.mitchellh.ghostty/"
 end
@@ -55,4 +42,14 @@ for m in $modules
         echo "Unknown module: $m (available: $all_modules)"
         exit 1
     end
+=======
+function module_packagesq
+  brew update
+  brew install stow
+  brew install --cask ghostty
+  brew install tmux
+
+  # DOOM EMACS lsps
+  pip install 'python-lsp-server[all]'
+>>>>>>> e87a0bd (Migrate dotfiles to use stow)
 end
