@@ -26,34 +26,14 @@ set -g theme_display_git_dirty yes
 set -g theme_title_display_path yes
 
 # sbt pipeline ======
-function sbt_failures
-    set tmp (mktemp)
-    sbt test 2>&1 | tee $tmp >/dev/null
-
-    set failures (grep -E "(! |✗|FAILED|\[error\])" $tmp)
-
-    if test (count $failures) -eq 0
-        set_color green
-        echo "✓ All tests passed"
-        set_color normal
-    else
-        set_color red
-        echo "Failing tests:"
-        set_color normal
-
-        for f in $failures
-            set_color yellow
-            echo "✗ "(string trim $f)
-            set_color normal
-        end
-    end
-
-    rm $tmp
-end
-
-alias sbt_check "sbt compile && sbt scalafmt && sbt test:scalafmt && sbt_failures"
+function run-tests
+      set name $argv[1]
+      sbt compile && sbt scalafmt && sbt test:scalafmt && sbt "testOnly **$name" && sbt
+  -v --batch it/test
+  end
 
 # terminal ====== 
 function reload
     source ~/.config/fish/config.fish
 end
+

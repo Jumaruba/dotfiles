@@ -37,6 +37,7 @@ end
 
 function module_packages
     fish packages.fish
+    brew install tmux
 end
 
 set -l all_modules nvim fish kitty doom ghostty packages

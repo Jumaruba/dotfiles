@@ -79,3 +79,10 @@
 (use-package all-the-icons
   :if (display-graphic-p))
 (setq neo-theme (if (display-graphic-p) 'all-the-icons 'arrow))
+
+;; Nice UI for errors
+(after! flycheck
+  (require 'flycheck-posframe)
+  (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
+
+(setq lsp-enable-snippet nil)
