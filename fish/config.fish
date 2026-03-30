@@ -27,10 +27,9 @@ set -g theme_title_display_path yes
 
 # sbt pipeline ======
 function run-tests
-      set name $argv[1]
-      sbt compile && sbt scalafmt && sbt test:scalafmt && sbt "testOnly **$name" && sbt
-  -v --batch it/test
-  end
+  set name $argv[1]
+  sbt compile && sbt scalafmt && sbt test:scalafmt && sbt "testOnly *$name" && sbt -v --batch it/test
+end
 
 # terminal ====== 
 function reload
