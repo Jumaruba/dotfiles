@@ -21,8 +21,8 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-;;(setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
-;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
+(setq doom-font (font-spec :family "psudoFont Liga Mono" :size 12 :weight 'regular)
+      doom-variable-pitch-font (font-spec :family "psudoFont LigaMono" :size 13))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -86,3 +86,11 @@
   (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
 
 (setq lsp-enable-snippet nil)
+
+;; FONTS ========================================
+;; https://www.gnu.org/software/emacs/manual/html_node/elisp/Faces-for-Font-Lock.html
+(set-face-attribute 'font-lock-comment-face nil :foreground "#5B6268" :slant 'italic)
+(set-face-attribute 'font-lock-function-call-face nil :foreground "#D758FD" :slant 'italic)
+(set-face-attribute 'font-lock-variable-name-face nil :foreground "#FFAD65" :slant 'italic)
+(set-face-attribute 'font-lock-function-name-face nil :foreground "#46AEFF")
+(set-face-attribute 'font-lock-string-face nil :foreground "#99FD51" )

@@ -13,9 +13,6 @@
 ;;
 ;;      Alternatively, press 'gd' (or 'C-c c d') on a module to browse its
 ;;      directory (for easy access to its source code).
-(with-eval-after-load 'flycheck
-  (require 'flycheck-posframe)
-  (add-hook 'flycheck-mode-hook #'flycheck-posframe-mode))
 
 (doom! :input
        ;;bidi              ; (tfel ot) thgir etirw uoy gnipleh
@@ -25,7 +22,7 @@
 
        :completion
        company           ; the ultimate code completion backend
-       (corfu +orderless)  ; complete with cap(f), cape and a flying feather!
+       ;;(corfu +orderless)  ; complete with cap(f), cape and a flying feather!
        ;;helm              ; the *other* search engine for love and life
        ;;ido               ; the other *other* search engine...
        ;;ivy               ; a search engine for love and life

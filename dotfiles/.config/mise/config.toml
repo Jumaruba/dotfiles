@@ -1,7 +1,8 @@
 [tools]
-java = "temurin-21.0.7+6.0.LTS"
-kubectl = "1.27.4"
-node = "20.16.0"
-opentofu = "1.10.3"
-scala = "2.13.12"
+# java = "temurin-11.0.28+6"
+java = "temurin-21"
+node = "23.11.0"
+opentofu = "1.10.5"
+rust-analyzer = "latest"
+scala = "2.13.18"
 terraform = "1.6.0"
