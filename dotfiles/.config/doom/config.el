@@ -21,8 +21,9 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
+
 (setq doom-font (font-spec :family "psudoFont Liga Mono" :size 12 :weight 'regular)
-      doom-variable-pitch-font (font-spec :family "psudoFont LigaMono" :size 13))
+      doom-variable-pitch-font (font-spec :family "psudoFont Liga Mono" :size 13))
 ;;
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -75,10 +76,9 @@
 ;; they are implemented.
 
 ;; ================= MY CHANGES =================
-;; Nerd tree with icons
-(use-package all-the-icons
-  :if (display-graphic-p))
-(setq neo-theme (if (display-graphic-p) 'all-the-icons 'arrow))
+;; Tree with clicks
+(with-eval-after-load 'treemacs
+  (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action))
 
 ;; Nice UI for errors
 (after! flycheck
@@ -94,3 +94,7 @@
 (set-face-attribute 'font-lock-variable-name-face nil :foreground "#FFAD65" :slant 'italic)
 (set-face-attribute 'font-lock-function-name-face nil :foreground "#46AEFF")
 (set-face-attribute 'font-lock-string-face nil :foreground "#99FD51" )
+
+(setq treemacs-width 60)
+(map! :leader
+      :desc "VC annotate" "g a" #'vc-annotate)
