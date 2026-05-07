@@ -6,3 +6,6 @@ opentofu = "1.10.5"
 rust-analyzer = "latest"
 scala = "2.13.18"
 terraform = "1.6.0"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]

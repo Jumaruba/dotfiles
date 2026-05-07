@@ -95,6 +95,12 @@
 (set-face-attribute 'font-lock-function-name-face nil :foreground "#46AEFF")
 (set-face-attribute 'font-lock-string-face nil :foreground "#99FD51" )
 
+; TREEMACS
 (setq treemacs-width 60)
 (map! :leader
       :desc "VC annotate" "g a" #'vc-annotate)
+
+; Magit blame shows the number of commits hash
+(setq magit-blame-styles '(headings))
+(setq magit-blame-heading-format
+      "%h %a %C %s")

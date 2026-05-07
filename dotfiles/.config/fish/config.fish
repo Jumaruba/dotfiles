@@ -5,6 +5,9 @@ if status is-interactive
     set PATH ~/bin/ $PATH
     set PATH ~/gradle/bin/ $PATH
     set PATH ~/.local/bin/ $PATH
+
+    # Work scripts
+    set PATH ~/Documents/relevancy-generator/scripts/launchers/ $PATH
 end
 
 # aliases for EZA  ======
@@ -14,9 +17,7 @@ alias llt "ll --tree"
 alias llat "lla --tree"
 
 # aliases for Github ======
-alias ghs "git status -s"
-alias ghlog "git log --graph --decorate \
---pretty=format:'%C(auto)%h%C(reset) %C(cyan)%s%C(reset) %C(dim white)- %an, %ar%C(reset)'"
+alias ghlog "git log --graph --decorate --pretty=format:'%C(auto)%h%C(reset) %C(cyan)%s%C(reset) %C(dim white)- %an, %ar%C(reset)'"
 alias ghpr "gh pr checkout"
 alias assume "source /opt/homebrew/bin/assume.fish"
 
@@ -25,14 +26,42 @@ set -g theme_nerd_fonts yes
 set -g theme_display_git_dirty yes
 set -g theme_title_display_path yes
 
-# sbt pipeline ======
+# SBT Pipeline ====== 
 function run-tests
   set name $argv[1]
   sbt compile && sbt scalafmt && sbt test:scalafmt && sbt "testOnly *$name" && sbt -v --batch it/test
 end
 
-# terminal ====== 
+# Terminal ==========================
 function reload
     source ~/.config/fish/config.fish
+end
+
+# PICKS ==========================
+set scripts \
+    run-s3 \
+    run-dynamodb \
+    run-postgres
+
+set sbtcommand \
+    "feature-extractor\reStartConf" \
+    "inference-producer\reStartConf" \
+    "model-trainer\reStartConf" \
+    "inference-uploader\reStartConf"
+
+bind \gs 'pick-display scripts'
+
+bind \ss 'pick-display sbtcommand'
+
+function pick-display
+  # Creating the list to be displayed
+  set list_name $argv[1]
+
+  # Display and execute
+  set selected (printf "%s\n" $$list_name | peco)
+  
+  if test -n "$selected"
+    commandline -i -- $selected
+  end
 end
 
