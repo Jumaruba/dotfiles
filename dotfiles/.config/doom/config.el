@@ -100,7 +100,5 @@
 (map! :leader
       :desc "VC annotate" "g a" #'vc-annotate)
 
-; Magit blame shows the number of commits hash
-(setq magit-blame-styles '(headings))
-(setq magit-blame-heading-format
-      "%h %a %C %s")
+(use-package! protobuf-mode
+  :mode "\\.proto\\'")

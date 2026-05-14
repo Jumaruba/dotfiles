@@ -8,6 +8,7 @@ if status is-interactive
 
     # Work scripts
     set PATH ~/Documents/relevancy-generator/scripts/launchers/ $PATH
+    set PATH ~/Documents/relevancy-generator/scripts/bash/ $PATH
 end
 
 # aliases for EZA  ======
@@ -41,7 +42,8 @@ end
 set scripts \
     run-s3 \
     run-dynamodb \
-    run-postgres
+    run-postgres \
+    pblcat
 
 set sbtcommand \
     "feature-extractor\reStartConf" \
@@ -49,9 +51,9 @@ set sbtcommand \
     "model-trainer\reStartConf" \
     "inference-uploader\reStartConf"
 
-bind \gs 'pick-display scripts'
+bind \cs 'pick-display scripts'
 
-bind \ss 'pick-display sbtcommand'
+bind \cf 'pick-display sbtcommand'
 
 function pick-display
   # Creating the list to be displayed
